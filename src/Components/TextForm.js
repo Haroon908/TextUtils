@@ -31,8 +31,8 @@ export default function TextForm(props) {
 
 
     const [text, setText] = useState("");
-    const words = text.split(" ").length
-    const sentence = text.split(".").length
+    const words = text.split(/\s+/).filter((element)=>{return element.length!==0}).length
+    const sentence = text.split(".").filter((element)=>{return element.length!==0}).length
     
 
     
@@ -54,12 +54,12 @@ export default function TextForm(props) {
             <div className="container" style={{color:props.mode==='dark'?'white':'black'}}>
                 <h1>{props.heading} </h1>   
                 <div className='mb-3'>
-                    <textarea className='form-control' onChange={Changed} style={{backgroundColor:props.mode==='light'?'white':'grey',color:props.mode==='dark'?'white':'black'}} value={text} id="myBox" rows="8"  />
+                    <textarea className='form-control' onChange={Changed} style={{backgroundColor:props.mode==='light'?'white':'#3676b7',color:props.mode==='dark'?'white':'black'}} value={text} id="myBox" rows="8"  />
                 </div> 
-                <button className="btn btn-primary mx-2" onClick={handleUpperClick}>Convert to UpperCase</button>
-                <button className="btn btn-primary mx-2"  onClick={handleLowerClick}>Convert to LowerCase</button>
-                <button className="btn btn-primary mx-2"  onClick={HandleClear}>Clear </button>
-                <button className="btn btn-primary mx-2"  onClick={handleCapClick}>Convert to Capitalized Case </button>
+                <button className="btn btn-primary mx-2 my-1" disabled={text.length===0} onClick={handleUpperClick}>Convert to UpperCase</button>
+                <button className="btn btn-primary mx-2 my-1" disabled={text.length===0} onClick={handleLowerClick}>Convert to LowerCase</button>
+                <button className="btn btn-primary mx-2 my-1" disabled={text.length===0} onClick={HandleClear}>Clear </button>
+                <button className="btn btn-primary mx-2 my-1" disabled={text.length===0} onClick={handleCapClick}>Convert to Capitalized Case </button>
 
             </div>
             <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
